@@ -2,6 +2,7 @@ import React from 'react'
 import { Route,Routes } from 'react-router-dom';
 import { NavBar,SideBar } from './components';
 import {Home,CampaignDetails,CreateCampaign,Profile} from "./pages";
+import ConnectModal from './components/ConnectModal';
 // import { Home } from './pages';
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/create-campaign" element={<CreateCampaign/>}></Route>
         <Route path="/campaign/:id" element={<CampaignDetails/>}></Route>
         <Route path="/profile" element={<Profile/>}></Route>
+        <Route path="/connect-prompt" element={<ConnectModal/>}></Route>
       </Routes>
     </div>
 

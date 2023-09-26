@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {DisplayCampaigns} from '../components'
 import { useStateContext } from '../context';
+import Loader from '../components/Loader';
 
 const Home = () => {
   const {getCampaigns,contract}=useStateContext();
@@ -21,11 +22,11 @@ const Home = () => {
   return (
     <div>
     {
-      isLoading?<p className=' text-2xl text-white'>Loading</p>
-      :
-      <DisplayCampaigns
+      isLoading?<Loader/>
+      :<DisplayCampaigns
         campaigns={campaigns}
       />
+
     }
     </div>
   )

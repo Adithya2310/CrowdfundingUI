@@ -29,7 +29,7 @@ const CreateCampaign = () => {
   const handleFormSubmit=async (e)=> {
     // console.log(e);
     e.preventDefault();
-    console.log(formState);
+    // console.log(formState);
     await publishCampaign(formState);
   }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { navLinks } from '../constants';
 import { Link,useNavigate } from 'react-router-dom';
 import { logo } from "../assets";
+import { useStateContext } from '../context';
 
 const Icon=({name,styles,imageUrl,isActive,handleClick})=>(
     <div className={`bg-[#2b2e2e] flex w-[52px] h-[52px] rounded-[10px] ${isActive===name&&`bg-[#949494]`} ${styles}`} onClick={handleClick}>
@@ -10,6 +11,12 @@ const Icon=({name,styles,imageUrl,isActive,handleClick})=>(
 )
 
 const SideBar = () => {
+
+    const {address,disconnect}=useStateContext();
+    // to prompt for the wallet connection
+    const [prompt,setPrompt]=useState(false);
+
+
     const [isActive,setIsActive]=useState("dashboard");
     const navigate=useNavigate();
     // console.log(navLinks);
@@ -29,8 +36,19 @@ const SideBar = () => {
                     imageUrl={link.imgUrl}
                     handleClick={
                         ()=>{
-                            navigate(link.link);
-                            setIsActive(link.name);
+                            if(link.name==='logout')
+                            {
+                                setIsActive("dashboard");
+                                disconnect();
+                            }
+                            if(address){
+                                navigate(link.link);
+                                setIsActive(link.name);
+                            }
+                            else{
+                                setPrompt(true);
+                                navigate("/connect-prompt");
+                            }
                         }
                     }
                     />

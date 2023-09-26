@@ -3,7 +3,7 @@ import React from 'react'
 const CampaignCard = ({Title,Description,Target,AmountCollected,DeadLine,handleClick}) => {
 
   return (
-    <div onClick={handleClick} className='bg-[#2b2e2e] h-[328px] rounded-[10px] text-white min-w-[250px] max-w-[300px] p-3  my-1'>
+    <div onClick={handleClick} className=' cursor-pointer bg-[#2b2e2e] h-[328px] rounded-[10px] text-white min-w-[250px] max-w-[300px] p-3  my-1'>
         <h1 className=' my-2 text-xl text-center font-semibold'>{Title.slice(0,15)}</h1>
         <div className='bg-[#949494] p-2 rounded-[10px]  h-[112px]'>
                 <p className=' text-slate-300'>Description:</p>

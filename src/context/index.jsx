@@ -1,4 +1,4 @@
-import { useAddress, useContract, useContractWrite, useMetamask } from '@thirdweb-dev/react'
+import { useAddress, useContract, useContractWrite, useMetamask, useDisconnect } from '@thirdweb-dev/react'
 import { ethers } from 'ethers';
 import React, { createContext, useContext } from 'react'
 import { createCampaign, profile } from '../assets';
@@ -14,7 +14,10 @@ const StateContextProvider = ({children}) => {
     //     </StateContext.Provider>
     // )
 
+    // hooks to connect and disconnect to the wallet in metamask
     const connect=useMetamask();
+    const disconnect=useDisconnect();
+
    // give the contract of the smart contracts
     const {contract}=useContract('0xa518cd1757dE5A0216C5acC87Bb1B286f8B7d668');
     // console.log("Contract is"+contract);
@@ -78,8 +81,27 @@ const StateContextProvider = ({children}) => {
         return profileCampaigns;
     }
 
+    const donateToCampaigns=async (Cid,amount)=>{
+        const data=await contract.call('donateToCampaign',[Cid],{
+            value:ethers.utils.parseEther(amount)
+        });
+        console.log(data);
+    }
+
+    const getDonators=async(Cid)=>{
+        try{
+            const donators=await contract.call('getDonators',[Cid]);
+            // console.log(donators);
+            return donators
+        }
+        catch(e)
+        {
+            console.log(e);
+        }
+    }
+
     return (
-      <StateContext.Provider value={{connect,contract,address,message:"Ya its working",publishCampaign,test,getCampaigns,getProfileCampaigns}}>
+      <StateContext.Provider value={{connect,disconnect,contract,address,message:"Ya its working",publishCampaign,test,getCampaigns,getProfileCampaigns,donateToCampaigns,getDonators}}>
         {children}
       </StateContext.Provider>)
     }

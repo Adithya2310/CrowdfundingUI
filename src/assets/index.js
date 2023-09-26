@@ -13,6 +13,7 @@ import money from './money.svg';
 import loader from './loader.svg';
 import thirdweb from './thirdweb.png';
 import dp from "./dp.svg";
+import back from "./back.svg";
 
 export {
   tagType,
@@ -29,5 +30,6 @@ export {
   money,
   loader,
   thirdweb,
-  dp
+  dp,
+  back
 };

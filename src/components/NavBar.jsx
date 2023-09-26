@@ -5,7 +5,7 @@ import {dp} from "../assets";
 import { useStateContext } from '../context';
 
 const NavBar = ({}) => {
-    const {connect,address,message}=useStateContext();
+    const {connect,address,message,disconnect}=useStateContext();
     // console.log(message+"The address is"+address);
   return (
     <div className=' ml-[30px] flex  align-center justify-between'>
@@ -27,9 +27,9 @@ const NavBar = ({}) => {
                 handleClick={()=>{
                     connect();
                 }}/>:<CustomButton
-                name="Connected"
-                styles={'bg-purple-500 text-white rounded-[10px] py-3 px-5'}
-                handleClick={()=>{console.log("You are already connected")}}
+                name="Disconnect"
+                styles={'bg-red-500 text-white rounded-[10px] py-3 px-5'}
+                handleClick={()=>{disconnect();}}
                 />
             }
             {/* <div className='max-w-[60px] p-1 rounded-full bg-[#2b2e2e]'>
