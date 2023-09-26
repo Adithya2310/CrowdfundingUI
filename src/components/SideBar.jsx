@@ -12,11 +12,11 @@ const Icon=({name,styles,imageUrl,isActive,handleClick})=>(
 const SideBar = () => {
     const [isActive,setIsActive]=useState("dashboard");
     const navigate=useNavigate();
-    console.log(navLinks);
+    // console.log(navLinks);
     return (
-        <div className='py-2 px-1 flex flex-col gap-20 rounded-[10px]'>
+        <div className='py-3 px-1 flex flex-col gap-20 rounded-[10px]'>
             <Icon 
-                styles="p-2"
+                styles=""
                 name="Logo"
                 imageUrl={logo}
             />

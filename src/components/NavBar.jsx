@@ -2,8 +2,11 @@ import React from 'react'
 import { search } from "../assets"
 import CustomButton from './CustomButton'
 import {dp} from "../assets";
+import { useStateContext } from '../context';
 
 const NavBar = ({}) => {
+    const {connect,address,message}=useStateContext();
+    // console.log(message+"The address is"+address);
   return (
     <div className=' ml-[30px] flex  align-center justify-between'>
         <div className='ml-10 rounded-[100px] p-1.5 bg-[#2b2e2e] '>
@@ -17,13 +20,18 @@ const NavBar = ({}) => {
             </div>
         </div>
         <div className='flex gap-6'>
-            <CustomButton 
+            {
+                (!address)?<CustomButton 
                 name="Connect"
                 styles={" bg-green-500 text-white rounded-[10px] py-3 px-5"}
                 handleClick={()=>{
-                    console.log("The button is clicked")
-                }}
-            />
+                    connect();
+                }}/>:<CustomButton
+                name="Connected"
+                styles={'bg-purple-500 text-white rounded-[10px] py-3 px-5'}
+                handleClick={()=>{console.log("You are already connected")}}
+                />
+            }
             {/* <div className='max-w-[60px] p-1 rounded-full bg-[#2b2e2e]'>
                 <img src={dp} alt="" />
             </div> */}
