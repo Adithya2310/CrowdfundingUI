@@ -4,7 +4,7 @@ import { useStateContext } from '../context';
 import Loader from '../components/Loader';
 
 const Home = () => {
-  const {getCampaigns,contract}=useStateContext();
+  const {getCampaigns,contract,address}=useStateContext();
   const [campaigns,setCampaigns]=useState([]);
   const [isLoading,setIsLoading]=useState(false);
 
@@ -15,8 +15,9 @@ const Home = () => {
   }
   // console.log(message);
   useEffect(()=>{
+    if(address)
     handleCampaigns();
-  },[contract]);
+  },[contract,address]);
 
 
   return (
